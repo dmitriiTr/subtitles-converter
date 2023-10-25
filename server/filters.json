@@ -1,0 +1,19 @@
+{
+    "filters": [
+        {
+            "name": "Dots",
+            "type": 0,
+            "text": "..."
+        },
+        {
+            "name": "Double dots",
+            "type": 0,
+            "text": "...\r\n..."
+        },
+        {
+            "name": "Tags",
+            "type": 1,
+            "text": "<i>,</i>"
+        }
+    ]
+}
