@@ -40,16 +40,9 @@ const app = () => {
 
           const processedText = processFile(allText,
             allFilters.filter(f => selectedFilters.includes(f.name)));
-
-          const link = document.createElement('a');
-          link.download = 'Processed ' + file.name;
-          const blob = new Blob([processedText], { type: 'text/plain' });
-          link.href = window.URL.createObjectURL(blob);
-          link.click();
-          link.remove();
+          downloadFile(processedText, file.name);
         }
       };
-
       fileReader.readAsText(file);
     }
   };
@@ -62,18 +55,20 @@ const app = () => {
         if (typeof allText === 'string') {
 
           const processedText = restoreFromVer2(allText);
-
-          const link = document.createElement('a');
-          link.download = 'Processed ' + file.name;
-          const blob = new Blob([processedText], { type: 'text/plain' });
-          link.href = window.URL.createObjectURL(blob);
-          link.click();
-          link.remove();
+          downloadFile(processedText, file.name);
         }
       };
-
       fileReader.readAsText(file);
     }
+  };
+
+  const downloadFile = (fileText: string, fileName: string) => {
+    const link = document.createElement('a');
+    link.download = 'Processed ' + fileName;
+    const blob = new Blob([fileText], { type: 'text/plain' });
+    link.href = window.URL.createObjectURL(blob);
+    link.click();
+    link.remove();
   };
 
   const toggleChecked = (filterName: string) => {
